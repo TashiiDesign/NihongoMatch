@@ -1,5 +1,5 @@
 {
-  "name": "NihongoMatch",
+  "name": "nihongomatch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,9 @@
     "phaser": "^3.22.0",
     "phaser3-project-template": "^1.0.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
