@@ -29,8 +29,10 @@ class Menu extends Phaser.Scene {
         this.studyBtn = this.add.image(phaser.config.width / 2, phaser.config.height / 2+200, 'study-btn').setInteractive();
         this.exitBtnStartScreen = this.add.image(phaser.config.width / 2-330, phaser.config.height / 2-260, 'exit-button-start-screen').setInteractive();
 
+        Client.askNewPlayer();
+        
         this.newGameBtn.on('pointerdown', function(){
-            this.scene.start('game');
+            this.scene.start('connect');
             console.log("clicked");
         }, this )
 

@@ -6,13 +6,14 @@
   "dependencies": {
     "express": "^4.17.1",
     "phaser": "^3.22.0",
-    "phaser3-project-template": "^1.0.9"
+    "phaser3-project-template": "^1.0.9",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
