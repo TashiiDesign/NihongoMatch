@@ -9,9 +9,9 @@ class Category extends Phaser.Scene {
 
         game = this; 
         
-        var menuLogo = this.load.image('menu-logo', '../assets/start-screen/menu-logo.png');
-        var bg = this.load.image('bg', '../assets/start-screen/start-screen-bg.png');
-        var connectingBackBtn = this.load.image('connecting-back-btn', '../assets/connecting-screen/connecting-back-btn.png')
+        var menuLogo = this.load.image('menu-logo', '/client/assets/start-screen/menu-logo.png');
+        var bg = this.load.image('bg', '/client/assets/start-screen/start-screen-bg.png');
+        var connectingBackBtn = this.load.image('connecting-back-btn', '/client/assets/connecting-screen/connecting-back-btn.png')
 
     }
 

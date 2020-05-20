@@ -6,30 +6,30 @@ class Study extends Phaser.Scene {
 
   
     preload(){
-        var studyBtn = this.load.image('study-btn', '../assets/start-screen/study.png');
-        var bg = this.load.image('bg', '../assets/start-screen/start-screen-bg.png');
-        var studyBg = this.load.image('study-bg', '../assets/study-screen/study-bg.png');
-        var connectingBackBtn = this.load.image('connecting-back-btn', '../assets/connecting-screen/connecting-back-btn.png')
+        var studyBtn = this.load.image('study-btn', '/client/assets/start-screen/study.png');
+        var bg = this.load.image('bg', '/client/assets/start-screen/start-screen-bg.png');
+        var studyBg = this.load.image('study-bg', '/client/assets/study-screen/study-bg.png');
+        var connectingBackBtn = this.load.image('connecting-back-btn', '/client/assets/connecting-screen/connecting-back-btn.png')
 
         //icons
-        var appleStudy = this.load.image('appleStudy', '../assets/study-screen/apple.png');
-        var bananaStudy = this.load.image('bananaStudy', '../assets/study-screen/banana.png');
-        var birdStudy = this.load.image('birdStudy', '../assets/study-screen/bird.png');
-        var butterflyStudy = this.load.image('butterflyStudy', '../assets/study-screen/butterfly.png');
-        var catStudy = this.load.image('catStudy', '../assets/study-screen/cat.png');
-        var cherryStudy = this.load.image('cherryStudy', '../assets/study-screen/cherry.png');
-        var dogStudy = this.load.image('dogStudy', '../assets/study-screen/dog.png');
-        var frogStudy = this.load.image('frogStudy', '../assets/study-screen/frog.png');
-        var grapesStudy = this.load.image('grapesStudy', '../assets/study-screen/grapes.png');
-        var lemonStudy = this.load.image('lemonStudy', '../assets/study-screen/lemon.png');
-        var orangeStudy = this.load.image('orangeStudy', '../assets/study-screen/orange.png');
-        var pineappleStudy = this.load.image('pineappleStudy', '../assets/study-screen/pineapple.png');
-        var snailStudy = this.load.image('snailStudy', '../assets/study-screen/snail.png');
-        var snakeStudy = this.load.image('snakeStudy', '../assets/study-screen/snake.png');
-        var squidStudy = this.load.image('squidStudy', '../assets/study-screen/squid.png');
-        var strawberryStudy = this.load.image('strawberryStudy', '../assets/study-screen/strawberry.png');
-        var turtleStudy = this.load.image('turtleStudy', '../assets/study-screen/turtle.png');
-        var watermelonStudy = this.load.image('watermelonStudy', '../assets/study-screen/watermelon.png');
+        var appleStudy = this.load.image('appleStudy', '/client/assets/study-screen/apple.png');
+        var bananaStudy = this.load.image('bananaStudy', '/client/assets/study-screen/banana.png');
+        var birdStudy = this.load.image('birdStudy', '/client/assets/study-screen/bird.png');
+        var butterflyStudy = this.load.image('butterflyStudy', '/client/assets/study-screen/butterfly.png');
+        var catStudy = this.load.image('catStudy', '/client/assets/study-screen/cat.png');
+        var cherryStudy = this.load.image('cherryStudy', '/client/assets/study-screen/cherry.png');
+        var dogStudy = this.load.image('dogStudy', '/client/assets/study-screen/dog.png');
+        var frogStudy = this.load.image('frogStudy', '/client/assets/study-screen/frog.png');
+        var grapesStudy = this.load.image('grapesStudy', '/client/assets/study-screen/grapes.png');
+        var lemonStudy = this.load.image('lemonStudy', '/client/assets/study-screen/lemon.png');
+        var orangeStudy = this.load.image('orangeStudy', '/client/assets/study-screen/orange.png');
+        var pineappleStudy = this.load.image('pineappleStudy', '/client/assets/study-screen/pineapple.png');
+        var snailStudy = this.load.image('snailStudy', '/client/assets/study-screen/snail.png');
+        var snakeStudy = this.load.image('snakeStudy', '/client/assets/study-screen/snake.png');
+        var squidStudy = this.load.image('squidStudy', '/client/assets/study-screen/squid.png');
+        var strawberryStudy = this.load.image('strawberryStudy', '/client/assets/study-screen/strawberry.png');
+        var turtleStudy = this.load.image('turtleStudy', '/client/assets/study-screen/turtle.png');
+        var watermelonStudy = this.load.image('watermelonStudy', '/client/assets/study-screen/watermelon.png');
 
         
 

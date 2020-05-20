@@ -8,62 +8,62 @@ class Game extends Phaser.Scene {
     preload(){
 
         //assets
-        var wordMatch = this.load.image('match-the-word', '../assets/game-screen/match-the-word.png');
-        var animalsGameScreen = this.load.image('animals-game-screen', '../assets/game-screen/animals-game-screen.png');
-        var fruitsGameScreen = this.load.image('fruits-game-screen', '../assets/game-screen/fruits-game-screen.png');
-        var cards = this.load.image('cards', '../assets/game-screen/cards.png');
-        var disconnectGameScreen = this.load.image('disconnect-game-screen', '../assets/game-screen/disconnect-game-screen.png');
-        var matchedScore = this.load.image('matched-score', '../assets/game-screen/matched-score.png');
-        var logoGameScreen = this.load.image('logo-game-screen', '../assets/game-screen/logo-game-screen.png');
+        var wordMatch = this.load.image('match-the-word', '/client/assets/game-screen/match-the-word.png');
+        var animalsGameScreen = this.load.image('animals-game-screen', '/client/assets/game-screen/animals-game-screen.png');
+        var fruitsGameScreen = this.load.image('fruits-game-screen', '/client/assets/game-screen/fruits-game-screen.png');
+        var cards = this.load.image('cards', '/client/assets/game-screen/cards.png');
+        var disconnectGameScreen = this.load.image('disconnect-game-screen', '/client/assets/game-screen/disconnect-game-screen.png');
+        var matchedScore = this.load.image('matched-score', '/client/assets/game-screen/matched-score.png');
+        var logoGameScreen = this.load.image('logo-game-screen', '/client/assets/game-screen/logo-game-screen.png');
 
         //words to match fruits
 
-        var mikan = this.load.image('mikan', '../assets/game-screen/mikan.png');
-        var ringo = this.load.image('ringo', '../assets/game-screen/ringo.png');
-        var budou = this.load.image('budou', '../assets/game-screen/budou.png');
-        var cheri = this.load.image('cheri', '../assets/game-screen/cheri.png');
-        var ichigo = this.load.image('ichigo', '../assets/game-screen/ichigo.png');
-        var remon = this.load.image('remon', '../assets/game-screen/remon.png');
-        var suika = this.load.image('suika', '../assets/game-screen/suika.png');
-        var banana = this.load.image('banana', '../assets/game-screen/banana.png');
-        var painapuru = this.load.image('painapuru', '../assets/game-screen/painapuru.png');
+        var mikan = this.load.image('mikan', '/client/assets/game-screen/mikan.png');
+        var ringo = this.load.image('ringo', '/client/assets/game-screen/ringo.png');
+        var budou = this.load.image('budou', '/client/assets/game-screen/budou.png');
+        var cheri = this.load.image('cheri', '/client/assets/game-screen/cheri.png');
+        var ichigo = this.load.image('ichigo', '/client/assets/game-screen/ichigo.png');
+        var remon = this.load.image('remon', '/client/assets/game-screen/remon.png');
+        var suika = this.load.image('suika', '/client/assets/game-screen/suika.png');
+        var banana = this.load.image('banana', '/client/assets/game-screen/banana.png');
+        var painapuru = this.load.image('painapuru', '/client/assets/game-screen/painapuru.png');
 
 
         //words to match animals
 
-        var chou = this.load.image('chou', '../assets/game-screen/chou.png');
-        var kaeru = this.load.image('kaeru', '../assets/game-screen/kaeru.png');
-        var kame = this.load.image('kame', '../assets/game-screen/kame.png');
-        var ika = this.load.image('ika', '../assets/game-screen/ika.png');
-        var neko = this.load.image('neko', '../assets/game-screen/neko.png');
-        var inu = this.load.image('inu', '../assets/game-screen/inu.png');
-        var hebi = this.load.image('hebi', '../assets/game-screen/hebi.png');
-        var katatsumuri = this.load.image('katatsumuri', '../assets/game-screen/katatsumuri.png');
-        var tori = this.load.image('tori', '../assets/game-screen/tori.png');
+        var chou = this.load.image('chou', '/client/assets/game-screen/chou.png');
+        var kaeru = this.load.image('kaeru', '/client/assets/game-screen/kaeru.png');
+        var kame = this.load.image('kame', '/client/assets/game-screen/kame.png');
+        var ika = this.load.image('ika', '/client/assets/game-screen/ika.png');
+        var neko = this.load.image('neko', '/client/assets/game-screen/neko.png');
+        var inu = this.load.image('inu', '/client/assets/game-screen/inu.png');
+        var hebi = this.load.image('hebi', '/client/assets/game-screen/hebi.png');
+        var katatsumuri = this.load.image('katatsumuri', '/client/assets/game-screen/katatsumuri.png');
+        var tori = this.load.image('tori', '/client/assets/game-screen/tori.png');
 
         //fruit images
 
-        var watermelon = this.load.image('watermelon', '../assets/game-screen/watermelon-game.png');
-        var bananas = this.load.image('bananas', '../assets/game-screen/banana-game.png');
-        var strawberry = this.load.image('strawberry', '../assets/game-screen/strawberry-game.png');
-        var orange = this.load.image('orange', '../assets/game-screen/orange-game.png');
-        var grapes = this.load.image('grapes', '../assets/game-screen/grapes-game.png');
-        var pineapple = this.load.image('pineapple', '../assets/game-screen/pineapple-game.png');
-        var apple = this.load.image('apple', '../assets/game-screen/apple-game.png');
-        var lemon = this.load.image('lemon', '../assets/game-screen/lemon-game.png');
-        var cherry = this.load.image('cherry', '../assets/game-screen/cherry-game.png');
+        var watermelon = this.load.image('watermelon', '/client/assets/game-screen/watermelon-game.png');
+        var bananas = this.load.image('bananas', '/client/assets/game-screen/banana-game.png');
+        var strawberry = this.load.image('strawberry', '/client/assets/game-screen/strawberry-game.png');
+        var orange = this.load.image('orange', '/client/assets/game-screen/orange-game.png');
+        var grapes = this.load.image('grapes', '/client/assets/game-screen/grapes-game.png');
+        var pineapple = this.load.image('pineapple', '/client/assets/game-screen/pineapple-game.png');
+        var apple = this.load.image('apple', '/client/assets/game-screen/apple-game.png');
+        var lemon = this.load.image('lemon', '/client/assets/game-screen/lemon-game.png');
+        var cherry = this.load.image('cherry', '/client/assets/game-screen/cherry-game.png');
 
         //animal images
 
-        var butterfly = this.load.image('butterfly', '../assets/game-screen/butterfly-game.png');
-        var frog = this.load.image('frog', '../assets/game-screen/frog-game.png');
-        var turtle = this.load.image('turtle', '../assets/game-screen/turtle-game.png');
-        var squid = this.load.image('squid', '../assets/game-screen/squid-game.png');
-        var bird = this.load.image('bird', '../assets/game-screen/bird-game.png');
-        var cat = this.load.image('cat', '../assets/game-screen/cat-game.png');
-        var dog = this.load.image('dog', '../assets/game-screen/dog-game.png');
-        var snail = this.load.image('snail', '../assets/game-screen/snail-game.png');
-        var snake = this.load.image('snake', '../assets/game-screen/snake-game.png');
+        var butterfly = this.load.image('butterfly', '/client/assets/game-screen/butterfly-game.png');
+        var frog = this.load.image('frog', '/client/assets/game-screen/frog-game.png');
+        var turtle = this.load.image('turtle', '/client/assets/game-screen/turtle-game.png');
+        var squid = this.load.image('squid', '/client/assets/game-screen/squid-game.png');
+        var bird = this.load.image('bird', '/client/assets/game-screen/bird-game.png');
+        var cat = this.load.image('cat', '/client/assets/game-screen/cat-game.png');
+        var dog = this.load.image('dog', '/client/assets/game-screen/dog-game.png');
+        var snail = this.load.image('snail', '/client/assets/game-screen/snail-game.png');
+        var snake = this.load.image('snake', '/client/assets/game-screen/snake-game.png');
 
         
     }

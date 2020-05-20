@@ -5,8 +5,8 @@ let game;
 let score = 0;
 let oppScore = 0;
 var timer;
-let player1Name;
-let player2Name;
+let player1;
+let player2;
 
 //Game config
 var config = {

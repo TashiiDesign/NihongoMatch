@@ -10,16 +10,18 @@ class Menu extends Phaser.Scene {
         game = this;
 
         //loading assets
-        var menuLogo = this.load.image('menu-logo', '../assets/start-screen/menu-logo.png');
-        var bg = this.load.image('bg', '../assets/start-screen/start-screen-bg.png');
-        var newGameBtn = this.load.image('new-game-btn', '../assets/start-screen/new-game.png');
-        var studyBtn = this.load.image('study-btn', '../assets/start-screen/study.png');
-        var exitBtnStartScreen = this.load.image('exit-button-start-screen', '../assets/start-screen/exit-button-start-screen.png');
+        var menuLogo = this.load.image('menu-logo', '/client/assets/start-screen/menu-logo.png');
+        var bg = this.load.image('bg', '/client/assets/start-screen/start-screen-bg.png');
+        var newGameBtn = this.load.image('new-game-btn', '/client/assets/start-screen/new-game.png');
+        var studyBtn = this.load.image('study-btn', '/client/assets/start-screen/study.png');
+        var exitBtnStartScreen = this.load.image('exit-button-start-screen', '/client/assets/start-screen/exit-button-start-screen.png');
 
 
     }
 
     create(){
+
+
         console.log("running")
 
         //placing assets 
@@ -29,16 +31,17 @@ class Menu extends Phaser.Scene {
         this.studyBtn = this.add.image(phaser.config.width / 2, phaser.config.height / 2+200, 'study-btn').setInteractive();
         this.exitBtnStartScreen = this.add.image(phaser.config.width / 2-330, phaser.config.height / 2-260, 'exit-button-start-screen').setInteractive();
 
+        //Sends the test function
+        Client.sendTest();
+
         Client.askNewPlayer();
-        
+
         this.newGameBtn.on('pointerdown', function(){
             this.scene.start('connect');
-            console.log("clicked");
         }, this )
 
         this.studyBtn.on('pointerdown', function(){
             this.scene.start('study');
-            console.log("clicked");
         }, this )
     }
 

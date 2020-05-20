@@ -1,52 +1,44 @@
-const PORT = 55000;
+const PORT = 5500;
 
-//express used to host client folder 
-var express = require('express');
-var app = express();
+var server = require('http').createServer();
+var socket = require('socket.io');
 
-app.use(express.static('client'));
+var io = socket(server);
 
-var server = app.listen(PORT);
 
-// var server = require('http').createServer();
+var players = [];
+var numPlayers = 0;
 
-var io = require('socket.io')(server);
+server.listen(PORT, function(){
+    console.log('Listening on ' + server.address().port);
+});
 
 io.on('connection', function(client) {
     
     client.on('test', function() {
         console.log('test received');
-
     });
-    
-    client.on('newplayer',function() {
-        client.player = {
-            id: server.lastPlayerID++,
-            x: randomInt(100,400),
-            y: randomInt(100,400)
-        };
-        client.emit('allplayers',getAllPlayers());
-        client.broadcast.emit('newplayer', client.player);
 
-        // client.on('disconnect',function() {
-        //     io.emit('remove', client.player.id);
-        //     console.log('disconnecting: ' + client.player.id);
-        // });
+
+    client.on('askNewPlayer', function(){
+        
+        players.push(client.id)
+        numPlayers++
+        client.broadcast.emit('newPlayer')
+        console.log(numPlayers)
+ 
     });
-    
-});
 
-server.lastPlayerID = 0;
+    client.on('numPlayers', function(){
+      console.log(numPlayers)
 
-function getAllPlayers(){
-    var players = [];
-    Object.keys(io.sockets.connected).forEach(function(socketID){
-        var player = io.sockets.connected[socketID].player;
-        if(player) players.push(player);
-    });
-    return players;
-}
+      if(numPlayers == 2){
+        client.broadcast.emit('2Players')
+        console.log('2 players')
 
-function randomInt(low, high) {
-    return Math.floor(Math.random() * (high - low) + low);
-}
+      }
+    })
+
+
+})
+
