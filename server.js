@@ -26,6 +26,12 @@ io.on('connection', function(client) {
         numPlayers++
         client.broadcast.emit('newPlayer')
         console.log(numPlayers)
+
+        client.on('disconnect',function() {
+          client.broadcast.emit('remove', client.id);
+          console.log('disconnecting: ' + client.id);
+          numPlayers--
+      });
  
     });
 
@@ -33,11 +39,12 @@ io.on('connection', function(client) {
       console.log(numPlayers)
 
       if(numPlayers == 2){
-        client.broadcast.emit('2Players')
+        io.emit('2Players')
         console.log('2 players')
 
       }
     })
+
 
 
 })

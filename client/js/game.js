@@ -70,7 +70,6 @@ class Game extends Phaser.Scene {
 
     create(){
 
-        var game = {};
 
 
         this.wordMatch = this.add.image(phaser.config.width / 2-244, phaser.config.height / 2-160, 'match-the-word');

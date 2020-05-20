@@ -2,7 +2,7 @@
 var express = require('express');
 
 var app = express();
-var server = app.listen(4000);
+var server = app.listen(5500);
 
 app.use(express.static('client'));
 
@@ -15,33 +15,41 @@ var io = socket(server);
 
 //socket is a connection. New connection event
 
+var players = [];
+var numPlayers = 0;
+
 io.on('connection', function (socket) {
     console.log('new connection: ' +  socket.id);
 
-    socket.on('newplayer',function() {
-        socket.player = {
-            id: server.lastPlayerID++,
-            x: randomInt(100,400),
-            y: randomInt(100,400)
-        };
-        socket.emit('allplayers',getAllPlayers());
-        socket.broadcast.emit('newplayer',socket.player);
-	
-    })
-})
-
-app.lastPlayerID = 0;
-
-function getAllPlayers(){
-    var players = [];
-    Object.keys(io.sockets.connected).forEach(function(socketID){
-        var player = io.sockets.connected[socketID].player;
-        if(player) players.push(player);
+    socket.on('test', function() {
+        console.log('test received');
     });
-    return players;
-}
 
 
-function randomInt(low, high) {
-    return Math.floor(Math.random() * (high - low) + low);
-}
+    socket.on('askNewPlayer', function(){
+        
+        players.push(socket.id)
+        numPlayers++
+        socket.broadcast.emit('newPlayer')
+        console.log(numPlayers)
+
+        socket.on('disconnect',function() {
+          io.emit('remove', socket.id);
+          console.log('disconnecting: ' + socket.id);
+          numPlayers--
+      });
+ 
+    });
+
+    socket.on('numPlayers', function(){
+      console.log(numPlayers)
+
+      if(numPlayers == 2){
+        io.emit('2Players')
+        console.log('2 players')
+
+      }
+    })
+
+    
+})

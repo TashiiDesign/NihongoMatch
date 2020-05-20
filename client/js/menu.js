@@ -36,6 +36,7 @@ class Menu extends Phaser.Scene {
 
         Client.askNewPlayer();
 
+
         this.newGameBtn.on('pointerdown', function(){
             this.scene.start('connect');
         }, this )

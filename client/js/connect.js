@@ -7,7 +7,6 @@ class Connect extends Phaser.Scene {
   
     preload(){
 
-        var Client = {};
 
         game = this; 
         
@@ -25,6 +24,7 @@ class Connect extends Phaser.Scene {
 
     create(){
 
+
         game = this;
 
         this.bg = this.add.image(400, 300, 'bg');
@@ -34,12 +34,31 @@ class Connect extends Phaser.Scene {
         this.heart = this.add.image(phaser.config.width / 2-179, phaser.config.height / 2+230, 'heart');
         //this.connected = this.add.image(phaser.config.width / 2, phaser.config.height / 2+230, 'connected');
         this.player1 = this.add.image(phaser.config.width / 2-270, phaser.config.height / 2+200, 'player1');
-        //this.player2 = this.add.image(phaser.config.width / 2+270, phaser.config.height / 2+205, 'player2');
+       
         //this.players = this.add.image(phaser.config.width / 2+20, phaser.config.height / 2+265, 'players');
+
+        
+        // var connected = function() {
+        //     if (Client.socket.on('2Players')) {
+        //         game.connected = game.add.image(phaser.config.width / 2, phaser.config.height / 2+230, 'connected');
+        //         game.player2 = game.add.image(phaser.config.width / 2+270, phaser.config.height / 2+205, 'player2');
+        //     } else if (!Client.socket.on('2Players')) {
+        //         game.connected.destroy()
+        //         game.player2.destroy()
+        //     }
+        //     return connected
+        // }
 
         Client.numPlayers();
 
+       Client.connected();
         
+        
+        // Client.socket.on('2Players', function(){
+        //     console.log('2 players')
+        //     game.connected = game.add.image(phaser.config.width / 2, phaser.config.height / 2+230, 'connected');
+        //     game.player2 = game.add.image(phaser.config.width / 2+270, phaser.config.height / 2+205, 'player2');
+        // })
 
         this.connectingBackBtn.on('pointerdown', function(){
             this.scene.start('menu');

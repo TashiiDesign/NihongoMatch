@@ -1,5 +1,4 @@
 
-
 //variables
 let game;
 let score = 0;
@@ -41,5 +40,4 @@ phaser.CONFIG   = {
 
 
 //Audio config
-
 
