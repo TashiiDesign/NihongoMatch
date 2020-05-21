@@ -51,8 +51,28 @@ class Connect extends Phaser.Scene {
 
         Client.numPlayers();
 
-       Client.connected();
-        
+     
+        Client.socket.on('2Players', function(){
+            console.log('2 Players')
+            //Client.connected = function(){
+                game.connected = game.add.image(phaser.config.width / 2, phaser.config.height / 2+230, 'connected');
+                game.player2 = game.add.image(phaser.config.width / 2+270, phaser.config.height / 2+205, 'player2');
+                setTimeout(function() {	
+                    Client.socket.emit('countdown')
+                    console.log('countdown')
+                }, 3500)
+                
+           // } 
+        })
+
+        Client.socket.on('startgame', function(){
+        //Client.startGame = function() {
+                console.log('startgame')
+                game.scene.start('game');
+       // }
+        })
+
+            
         
         // Client.socket.on('2Players', function(){
         //     console.log('2 players')

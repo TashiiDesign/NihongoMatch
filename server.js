@@ -45,6 +45,10 @@ io.on('connection', function(client) {
       }
     })
 
+    client.on('countdown', function(){
+      client.broadcast.emit('startgame')
+    })
+
 
 
 })
