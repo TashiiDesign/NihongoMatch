@@ -27,13 +27,14 @@ io.on('connection', function(client) {
         client.broadcast.emit('newPlayer')
         console.log(numPlayers)
 
-        client.on('disconnect',function() {
-          client.broadcast.emit('remove', client.id);
-          console.log('disconnecting: ' + client.id);
-          numPlayers--
-      });
- 
+    
     });
+
+    client.on('disconnect',function() {
+      client.broadcast.emit('remove', client.id);
+      console.log('disconnecting: ' + client.id);
+      numPlayers--
+  });
 
     client.on('numPlayers', function(){
       console.log(numPlayers)
@@ -49,6 +50,9 @@ io.on('connection', function(client) {
       client.broadcast.emit('startgame')
     })
 
+    // client.on('startgame', function(){
+    //   client.broadcast.emit('timerstart')
+    // })
 
 
 })

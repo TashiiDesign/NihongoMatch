@@ -17,3 +17,4 @@ Client.numPlayers = function(){
     Client.socket.emit('numPlayers');
 };
 
+    

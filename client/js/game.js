@@ -415,40 +415,41 @@ class Game extends Phaser.Scene {
         var oppScoreText = this.add.text(phaser.config.width / 2-265, phaser.config.height / 2+180, oppScore, style); 
         game.oppScoreText = oppScoreText; 
 
-        timer = this.time.addEvent({ delay: 10000, callback: gameEnd})
+
 
         function gameEnd(){
             var finishStyle = {font: '50px calibri', fill: '#000000', }
-            var finishText = game.add.text(phaser.config.width / 2-200, phaser.config.height / 2, playerName, finishStyle)
+            //var finishText = game.add.text(phaser.config.width / 2-200, phaser.config.height / 2, playerName, finishStyle)
             
-            finishText.setText('PLAYER ' + player1Name + ' WINS');
+           // finishText.setText('PLAYER ' + player1Name + ' WINS');
             game.scene.pause();
 
             setTimeout(function(){   
-
                 game.scene.start('menu')
                 score = 0;
             },5000)
-
-            
-            
         }
 
         var timerText = this.add.text(phaser.config.width / 2-300, phaser.config.height / 2-95, timer, timerStyle);
         game.timerText = timerText;
+
+        timer = this.time.addEvent({ delay: 10000, callback: gameEnd})
+
+      
         game.timer = timer;
     }
 
     update(game){
 
-    
-        game = this;
+        game = this
+        
         game.scoreText.setText(score); //updates the text for the score
         game.oppScoreText.setText(oppScore); //updates the text for the score
 
-
+         
         game.timerText.setText('Timer: ' + game.timer.getProgress().toString().substr(0, 4));
         
+        }
+    
     }
     
-}
