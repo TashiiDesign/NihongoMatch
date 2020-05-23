@@ -1,3 +1,4 @@
+
 class Game extends Phaser.Scene {
     constructor() {
       super("game");
@@ -435,9 +436,14 @@ class Game extends Phaser.Scene {
 
         function gameEnd(){
             var finishStyle = {font: '50px calibri', fill: '#000000', }
-            //var finishText = game.add.text(phaser.config.width / 2-200, phaser.config.height / 2, playerName, finishStyle)
+            var finishText = game.add.text(phaser.config.width / 2-200, phaser.config.height / 2, style)
             
-           // finishText.setText('PLAYER ' + player1Name + ' WINS');
+            if(score > oppScore){
+                finishText.setText('YOU WIN');
+            }else{
+                finishText.setText('YOU LOSE');
+            }
+
             game.scene.pause();
 
             setTimeout(function(){   
@@ -449,7 +455,7 @@ class Game extends Phaser.Scene {
         var timerText = this.add.text(phaser.config.width / 2-300, phaser.config.height / 2-95, timer, timerStyle);
         game.timerText = timerText;
 
-        timer = this.time.addEvent({ delay: 70000, callback: gameEnd})
+        timer = this.time.addEvent({ delay: 30000, callback: gameEnd})
 
       
         game.timer = timer;
