@@ -21,7 +21,8 @@ class Menu extends Phaser.Scene {
 
     create(){
 
-        
+        player1 = false;
+
 
         console.log("running")
 
@@ -32,10 +33,7 @@ class Menu extends Phaser.Scene {
         this.studyBtn = this.add.image(phaser.config.width / 2, phaser.config.height / 2+200, 'study-btn').setInteractive();
         this.exitBtnStartScreen = this.add.image(phaser.config.width / 2-330, phaser.config.height / 2-260, 'exit-button-start-screen').setInteractive();
 
-        //Sends the test function
-        Client.sendTest();
 
-        Client.askNewPlayer();
 
 
         this.newGameBtn.on('pointerdown', function(){

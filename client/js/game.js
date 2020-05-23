@@ -216,15 +216,23 @@ class Game extends Phaser.Scene {
         // this.randomAnimal7 = this.add.image(phaser.config.width / 2+335, phaser.config.height / 2+220, randomAnimal7).setInteractive();
         // this.randomAnimal8 = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2+220, randomAnimal8).setInteractive();
 
+        Client.socket.on('correct', function (){
+            oppScore++
+            console.log('correct')
+        });
+        Client.socket.on('wrong', function (){
+           console.log('wrong')
+        });
 
-
+        
         function addClicker(image){
             console.log(image)
             if(image == 'apple'){
                 if(game.randomFruitWordKey == 'ringo'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
                 
@@ -232,36 +240,40 @@ class Game extends Phaser.Scene {
 
             if(image == 'orange'){
                 if(game.randomFruitWordKey == 'mikan'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
 
             if(image == 'pineapple'){
                 if(game.randomFruitWordKey == 'painapuru'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
 
             if(image == 'strawberry'){
                 if(game.randomFruitWordKey == 'ichigo'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
 
             if(image == 'cherry'){
                 if(game.randomFruitWordKey == 'cheri'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
@@ -269,9 +281,10 @@ class Game extends Phaser.Scene {
             
             if(image == 'grapes'){
                 if(game.randomFruitWordKey == 'budou'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
@@ -279,9 +292,10 @@ class Game extends Phaser.Scene {
             
             if(image == 'bananas'){
                 if(game.randomFruitWordKey == 'banana'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
@@ -289,9 +303,10 @@ class Game extends Phaser.Scene {
             
             if(image == 'watermelon'){
                 if(game.randomFruitWordKey == 'suika'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
@@ -299,9 +314,10 @@ class Game extends Phaser.Scene {
             
             if(image == 'lemon'){
                 if(game.randomFruitWordKey == 'remon'){
+                    Client.socket.emit('serverCorrect');
                     score++
                 }else{
-                    score--
+                    Client.socket.emit('serverWrong');
                 }
                 console.log(score)
             }
@@ -433,7 +449,7 @@ class Game extends Phaser.Scene {
         var timerText = this.add.text(phaser.config.width / 2-300, phaser.config.height / 2-95, timer, timerStyle);
         game.timerText = timerText;
 
-        timer = this.time.addEvent({ delay: 10000, callback: gameEnd})
+        timer = this.time.addEvent({ delay: 70000, callback: gameEnd})
 
       
         game.timer = timer;
@@ -446,7 +462,7 @@ class Game extends Phaser.Scene {
         game.scoreText.setText(score); //updates the text for the score
         game.oppScoreText.setText(oppScore); //updates the text for the score
 
-         
+        
         game.timerText.setText('Timer: ' + game.timer.getProgress().toString().substr(0, 4));
         
         }

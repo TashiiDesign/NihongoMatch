@@ -1,20 +1,21 @@
 var Client = {};
 Client.socket = io('http://localhost:5500/');
 
-//Client sends back to server
-Client.sendTest = function(){
-    console.log("test sent");
-    Client.socket.emit('test')
-};
+player1 = false;
 
 Client.askNewPlayer = function(){
-    console.log('New Player')
-    Client.socket.emit('askNewPlayer');
 
-};
+    console.log('There is a New Player')
+    Client.socket.emit('askNewPlayer')
+}
 
-Client.numPlayers = function(){
-    Client.socket.emit('numPlayers');
-};
+Client.isPlayer1 = function(){
+    Client.socket.on('isPlayer1', function(){
+        console.log('You are Player 1')
+        player1 = true;
+        
+    })
+}
+
 
     

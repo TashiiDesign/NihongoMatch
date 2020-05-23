@@ -7,52 +7,55 @@ var io = socket(server);
 
 
 var players = [];
-var numPlayers = 0;
+
+var player1 = false;
+var player2 = false;
 
 server.listen(PORT, function(){
     console.log('Listening on ' + server.address().port);
 });
 
 io.on('connection', function(client) {
+  console.log('new connection: ' +  client.id);
     
-    client.on('test', function() {
-        console.log('test received');
-    });
-
-
     client.on('askNewPlayer', function(){
-        
-        players.push(client.id)
-        numPlayers++
-        client.broadcast.emit('newPlayer')
-        console.log(numPlayers)
 
+      players.push(client.id)
+      client.broadcast.emit('newPlayer')
+      console.log('There are ' + players.length + ' players...')
     
+
+      if(players.length === 1){
+        client.emit('isPlayer1')
+        console.log(players.length)
+        player1 = true;
+        
+      }
+
+      if(players.length === 2){
+        io.emit('2Players')
+        console.log('2 Players joined')
+      }
+      
+    })
+
+    client.on('disconnect', function() {
+      io.emit('remove', client.id);
+      console.log('disconnecting: ' + client.id);
+    })
+
+    //score 
+
+    client.on('serverCorrect', function(){
+      client.broadcast.emit('correct');
+      console.log('Correct!')
     });
 
-    client.on('disconnect',function() {
-      client.broadcast.emit('remove', client.id);
-      console.log('disconnecting: ' + client.id);
-      numPlayers--
-  });
 
-    client.on('numPlayers', function(){
-      console.log(numPlayers)
-
-      if(numPlayers == 2){
-        io.emit('2Players')
-        console.log('2 players')
-
-      }
-    })
-
-    client.on('countdown', function(){
-      client.broadcast.emit('startgame')
-    })
-
-    // client.on('startgame', function(){
-    //   client.broadcast.emit('timerstart')
-    // })
+    client.on('severWrong', function(){
+      client.broadcast.emit('wrong');
+      console.log('Wrong..')
+    });
 
 
 })
