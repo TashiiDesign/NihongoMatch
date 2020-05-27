@@ -6,12 +6,14 @@ class Study extends Phaser.Scene {
 
   
     preload(){
+
+        //Preloading Assets
         var studyBtn = this.load.image('study-btn', '/client/assets/start-screen/study.png');
         var bg = this.load.image('bg', '/client/assets/start-screen/start-screen-bg.png');
         var studyBg = this.load.image('study-bg', '/client/assets/study-screen/study-bg.png');
         var connectingBackBtn = this.load.image('connecting-back-btn', '/client/assets/connecting-screen/connecting-back-btn.png')
 
-        //icons
+        //Preloading Icons 
         var appleStudy = this.load.image('appleStudy', '/client/assets/study-screen/apple.png');
         var bananaStudy = this.load.image('bananaStudy', '/client/assets/study-screen/banana.png');
         var birdStudy = this.load.image('birdStudy', '/client/assets/study-screen/bird.png');
@@ -30,18 +32,17 @@ class Study extends Phaser.Scene {
         var strawberryStudy = this.load.image('strawberryStudy', '/client/assets/study-screen/strawberry.png');
         var turtleStudy = this.load.image('turtleStudy', '/client/assets/study-screen/turtle.png');
         var watermelonStudy = this.load.image('watermelonStudy', '/client/assets/study-screen/watermelon.png');
-
-        
-
     }
 
     create(){
+        
+        //Adding the assets
         this.bg = this.add.image(400, 300, 'bg');
         this.studyBg = this.add.image(phaser.config.width / 2, phaser.config.height / 2+90, 'study-bg');
         this.studyBtn = this.add.image(phaser.config.width / 2, phaser.config.height / 2-190, 'study-btn')
         this.connectingBackBtn = this.add.image(phaser.config.width / 2-300, phaser.config.height / 2-260, 'connecting-back-btn').setInteractive();
 
-        //icons
+        //Adding the icons
         this.watermelonStudy = this.add.image(phaser.config.width / 2-300, phaser.config.height / 2-50, 'watermelonStudy')
         this.orangeStudy = this.add.image(phaser.config.width / 2-300, phaser.config.height / 2+10, 'orangeStudy')
         this.grapesStudy = this.add.image(phaser.config.width / 2-300, phaser.config.height / 2+65, 'grapesStudy')
@@ -89,7 +90,7 @@ class Study extends Phaser.Scene {
         var butterflyStudy = this.butterflyStudy
         var catStudy = this.catStudy
 
-
+        //Adds animation to icons using tween feature in Phaser
         this.tweens.add({
 
             targets: [watermelonStudy, orangeStudy, grapesStudy, pineappleStudy, bananaStudy, strawberryStudy, cherryStudy, lemonStudy, appleStudy, 
@@ -101,15 +102,8 @@ class Study extends Phaser.Scene {
     
         });
 
-
-
     }
-    
-
     update(){
-
-       
-        
     }
     
 }

@@ -4,14 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1",
     "phaser": "^3.22.0",
     "phaser3-project-template": "^1.0.9",
     "socket.io": "^2.3.0"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.3"
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "node server.js"
   },

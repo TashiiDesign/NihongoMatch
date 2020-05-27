@@ -8,7 +8,11 @@ class Game extends Phaser.Scene {
   
     preload(){
 
-        //assets
+        //Preload Audio
+        var correctAudio = this.load.audio('correct-tone', '/client/assets/sounds/correct-tone.mp3')
+        var wrongAudio = this.load.audio('error-tone', '/client/assets/sounds/error-tone.mp3')
+
+        //Preload Assets
         var wordMatch = this.load.image('match-the-word', '/client/assets/game-screen/match-the-word.png');
         var animalsGameScreen = this.load.image('animals-game-screen', '/client/assets/game-screen/animals-game-screen.png');
         var fruitsGameScreen = this.load.image('fruits-game-screen', '/client/assets/game-screen/fruits-game-screen.png');
@@ -16,8 +20,10 @@ class Game extends Phaser.Scene {
         var disconnectGameScreen = this.load.image('disconnect-game-screen', '/client/assets/game-screen/disconnect-game-screen.png');
         var matchedScore = this.load.image('matched-score', '/client/assets/game-screen/matched-score.png');
         var logoGameScreen = this.load.image('logo-game-screen', '/client/assets/game-screen/logo-game-screen.png');
+        var startBanner = this.load.image('start-banner', '/client/assets/banners/player-choosing-banner.png')
+        var startText = this.load.image('start-text', '/client/assets/banners/start-text.png')
 
-        //words to match fruits
+        //Preload Fruit Words
 
         var mikan = this.load.image('mikan', '/client/assets/game-screen/mikan.png');
         var ringo = this.load.image('ringo', '/client/assets/game-screen/ringo.png');
@@ -29,20 +35,7 @@ class Game extends Phaser.Scene {
         var banana = this.load.image('banana', '/client/assets/game-screen/banana.png');
         var painapuru = this.load.image('painapuru', '/client/assets/game-screen/painapuru.png');
 
-
-        //words to match animals
-
-        var chou = this.load.image('chou', '/client/assets/game-screen/chou.png');
-        var kaeru = this.load.image('kaeru', '/client/assets/game-screen/kaeru.png');
-        var kame = this.load.image('kame', '/client/assets/game-screen/kame.png');
-        var ika = this.load.image('ika', '/client/assets/game-screen/ika.png');
-        var neko = this.load.image('neko', '/client/assets/game-screen/neko.png');
-        var inu = this.load.image('inu', '/client/assets/game-screen/inu.png');
-        var hebi = this.load.image('hebi', '/client/assets/game-screen/hebi.png');
-        var katatsumuri = this.load.image('katatsumuri', '/client/assets/game-screen/katatsumuri.png');
-        var tori = this.load.image('tori', '/client/assets/game-screen/tori.png');
-
-        //fruit images
+        //Preload Fruits
 
         var watermelon = this.load.image('watermelon', '/client/assets/game-screen/watermelon-game.png');
         var bananas = this.load.image('bananas', '/client/assets/game-screen/banana-game.png');
@@ -54,60 +47,50 @@ class Game extends Phaser.Scene {
         var lemon = this.load.image('lemon', '/client/assets/game-screen/lemon-game.png');
         var cherry = this.load.image('cherry', '/client/assets/game-screen/cherry-game.png');
 
-        //animal images
-
-        var butterfly = this.load.image('butterfly', '/client/assets/game-screen/butterfly-game.png');
-        var frog = this.load.image('frog', '/client/assets/game-screen/frog-game.png');
-        var turtle = this.load.image('turtle', '/client/assets/game-screen/turtle-game.png');
-        var squid = this.load.image('squid', '/client/assets/game-screen/squid-game.png');
-        var bird = this.load.image('bird', '/client/assets/game-screen/bird-game.png');
-        var cat = this.load.image('cat', '/client/assets/game-screen/cat-game.png');
-        var dog = this.load.image('dog', '/client/assets/game-screen/dog-game.png');
-        var snail = this.load.image('snail', '/client/assets/game-screen/snail-game.png');
-        var snake = this.load.image('snake', '/client/assets/game-screen/snake-game.png');
-
         
     }
 
     create(){
 
+        //Adding Audio
+        var correctTone = this.sound.add('correct-tone');
+        var errorTone = this.sound.add('error-tone');
 
+        game.correctTone = correctTone
+        game.errorTone = errorTone
 
+        //Adding Assets
         this.wordMatch = this.add.image(phaser.config.width / 2-244, phaser.config.height / 2-160, 'match-the-word');
-        //this.animalsGameScreen = this.add.image(phaser.config.width / 2+284, phaser.config.height / 2-200, 'animals-game-screen');
         this.fruitsGameScreen = this.add.image(phaser.config.width / 2+284, phaser.config.height / 2-200, 'fruits-game-screen');
         this.cards = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2+90, 'cards');
-        this.disconnectGameScreen = this.add.image(phaser.config.width / 2+310, phaser.config.height / 2-140, 'disconnect-game-screen');
+        this.disconnectGameScreen = this.add.image(phaser.config.width / 2+310, phaser.config.height / 2-140, 'disconnect-game-screen').setInteractive();
         this.matchedScore = this.add.image(phaser.config.width / 2-245, phaser.config.height / 2+123, 'matched-score');
         this.logoGameScreen = this.add.image(phaser.config.width / 2, phaser.config.height / 2-195, 'logo-game-screen');
 
-    
+        //RandomNumberChooser Class
         class RandomNumberChooser {
-            constructor(fruitWords, animalWords, fruits, animals){
+            constructor(fruitWords, fruits){
                 this.fruitWords = fruitWords;
-                this.animalWords = animalWords;
                 this.fruits = fruits;
-                this.animals = animals;
 
             }
             
-
+            //Returns a random index from 1-9 to attach to each element in fruitwords and fruits arrays 
             getRandomNumber(){
                 var randomNumber = Math.floor(Math.random() * 9);
                 
                 return this.fruitWords[randomNumber]
-                return this.animalWords[randomNumber]
+               // return this.animalWords[randomNumber]
                 return this.fruits[randomNumber]
-
             }
 
             
         }
 
-        
+        //Declaring fruitwords array 
         var fruitWords = ['suika', 'ringo', 'mikan', 'remon', 'painapuru', 'cheri', 'banana', 'budou', 'ichigo'];
-        var animalWords = ['inu', 'neko', 'chou', 'kaeru', 'kame', 'ika', 'hebi', 'katatsumuri', 'tori'];
         
+        //shuffles the array
         //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 
         function shuffle(arr) {
@@ -129,44 +112,49 @@ class Game extends Phaser.Scene {
             return arr;
           }
 
+        //Declaring fruits array 
         var fruits = ['watermelon', 'apple', 'orange', 'lemon', 'pineapple', 'cherry', 'bananas', 'grapes', 'strawberry']
-        var animals = ['butterfly', 'frog', 'turtle', 'dog', 'cat', 'squid', 'snake', 'snail', 'bird']
 
-        game.fruits = fruits
+        game.fruits = fruits 
 
 
         shuffle(fruits);
-        shuffle(animals);
-        console.log(animals)
+        //shuffle(animals);
        
        
         
-        var randomAnimal = new RandomNumberChooser(animalWords);
+        //var randomAnimal = new RandomNumberChooser(animalWords);
         
         // var randomFruitWord = randomFruit.getRandomNumber();
         // console.log(randomFruitWord)
 
-        var randomAnimalWord = randomAnimal.getRandomNumber();
-        console.log(randomAnimalWord)
+        // var randomAnimalWord = randomAnimal.getRandomNumber();
+        // console.log(randomAnimalWord)
         
-          game = this; 
+        game = this; 
           
-        var newFruitWord = function(){
+        var newFruitWord = function(){ 
+            //Generates a random word from the fruitWords array and puts it into the variable 'randomFruitWord' 
+            var randomFruit = new RandomNumberChooser(fruitWords); 
+            var randomFruitWord = randomFruit.getRandomNumber(); 
 
-            var randomFruit = new RandomNumberChooser(fruitWords);
-            var randomFruitWord = randomFruit.getRandomNumber();
+            //Adds image to the variable 
             var randomFruitWord = game.add.image(phaser.config.width / 2-250, phaser.config.height / 2-145, randomFruitWord );
+
+            //Adds a variable that references the .texture.key property (name of element)
             var randomFruitWordKey = randomFruitWord.texture.key
-        
+            
+            //References for use outside scope
             game.randomFruitWordKey = randomFruitWordKey;
             game.randomFruitWord = randomFruitWord;
         }
 
+        //Creates a new fruitWord
         newFruitWord();
 
-        //this.randomAnimalWord = this.add.image(phaser.config.width / 2-250, phaser.config.height / 2-145, randomAnimalWord );
-
-        var randomFruit0 = fruits[0]
+        //Adds the fruits into variables 'randomFruit[index]' 
+        //Because of the shuffle, they are all random indexes 
+        var randomFruit0 = fruits[0] 
         var randomFruit1 = fruits[1]
         var randomFruit2 = fruits[2]
         var randomFruit3 = fruits[3]
@@ -176,20 +164,10 @@ class Game extends Phaser.Scene {
         var randomFruit7 = fruits[7]
         var randomFruit8 = fruits[8]
 
-        var randomAnimal0 = animals[0]
-        var randomAnimal1 = animals[1]
-        var randomAnimal2 = animals[2]
-        var randomAnimal3 = animals[3]
-        var randomAnimal4 = animals[4]
-        var randomAnimal5 = animals[5]
-        var randomAnimal6 = animals[6]
-        var randomAnimal7 = animals[7]
-        var randomAnimal8 = animals[8]
-
         
         //randomised fruit cards 
 
-
+            //Adds the Images for the random Fruits
             this.randomFruit0 = this.add.image(phaser.config.width / 2-43, phaser.config.height / 2-37, randomFruit0).setInteractive();
             this.randomFruit1  = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2-37, randomFruit1).setInteractive();
             this.randomFruit2  = this.add.image(phaser.config.width / 2+335, phaser.config.height / 2-37, randomFruit2).setInteractive();
@@ -203,20 +181,8 @@ class Game extends Phaser.Scene {
             this.randomFruit8 = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2+220, randomFruit8).setInteractive();
 
 
-         //randomsied animal cards 
-
-        // this.randomAnimal0 = this.add.image(phaser.config.width / 2-43, phaser.config.height / 2-37, randomAnimal0).setInteractive();
-        // this.randomAnimal1  = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2-37, randomAnimal1).setInteractive();
-        // this.randomAnimal2  = this.add.image(phaser.config.width / 2+335, phaser.config.height / 2-37, randomAnimal2).setInteractive();
-
-        // this.randomAnimal3 = this.add.image(phaser.config.width / 2-40, phaser.config.height / 2+93, randomAnimal3).setInteractive();
-        // this.randomAnimal4 = this.add.image(phaser.config.width / 2+335, phaser.config.height / 2+93, randomAnimal4).setInteractive();
-        // this.randomAnimal5 = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2+93, randomAnimal5).setInteractive();
-
-        // this.randomAnimal6 = this.add.image(phaser.config.width / 2-40, phaser.config.height / 2+220, randomAnimal6).setInteractive();
-        // this.randomAnimal7 = this.add.image(phaser.config.width / 2+335, phaser.config.height / 2+220, randomAnimal7).setInteractive();
-        // this.randomAnimal8 = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2+220, randomAnimal8).setInteractive();
-
+        //If Client receives the 'correct' message from the server...
+        //Add 1 to the opponent's score
         Client.socket.on('correct', function (){
             oppScore++
             console.log('correct')
@@ -225,26 +191,32 @@ class Game extends Phaser.Scene {
            console.log('wrong')
         });
 
-        
+        //Function addClicker to check whether an image matches the word
         function addClicker(image){
             console.log(image)
-            if(image == 'apple'){
-                if(game.randomFruitWordKey == 'ringo'){
-                    Client.socket.emit('serverCorrect');
-                    score++
+            if(image == 'apple'){ //if Image is equal to name of fruit
+                if(game.randomFruitWordKey == 'ringo'){ //check if the randomFruitWordKey (name) is equal to the equivilent Japanese name
+                    Client.socket.emit('serverCorrect'); //If correct, emit 'serverCorrect
+                    score++ //Add to the score
+                    correctTone.play(); //Play the audio for 'correct' 
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
                 
             }
 
+            //Repeats for all fruits in the array
+
             if(image == 'orange'){
                 if(game.randomFruitWordKey == 'mikan'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -253,8 +225,10 @@ class Game extends Phaser.Scene {
                 if(game.randomFruitWordKey == 'painapuru'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -263,8 +237,10 @@ class Game extends Phaser.Scene {
                 if(game.randomFruitWordKey == 'ichigo'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -273,8 +249,10 @@ class Game extends Phaser.Scene {
                 if(game.randomFruitWordKey == 'cheri'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -284,8 +262,10 @@ class Game extends Phaser.Scene {
                 if(game.randomFruitWordKey == 'budou'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -295,8 +275,10 @@ class Game extends Phaser.Scene {
                 if(game.randomFruitWordKey == 'banana'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -306,8 +288,10 @@ class Game extends Phaser.Scene {
                 if(game.randomFruitWordKey == 'suika'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -317,8 +301,10 @@ class Game extends Phaser.Scene {
                 if(game.randomFruitWordKey == 'remon'){
                     Client.socket.emit('serverCorrect');
                     score++
+                    correctTone.play();
                 }else{
                     Client.socket.emit('serverWrong');
+                    errorTone.play();
                 }
                 console.log(score)
             }
@@ -326,16 +312,17 @@ class Game extends Phaser.Scene {
 
         }
 
-        
+       //When the card is clicked...
         this.randomFruit0.on('pointerdown', function(){
 
-            addClicker(randomFruit0);
-            game.randomFruitWord.destroy(); 
-            newFruitWord();
-            randomFruit0
+            addClicker(randomFruit0);           // 'addClicker' function is run for the first index of randomFruit to check the answer...
+
+            game.randomFruitWord.destroy();     // The random word is destroyed/removed...
+            newFruitWord();                     // A new random word is created.
             
         });
 
+        //Repeated for each randomFruit index 0-8
         this.randomFruit1.on('pointerdown', function(){
 
             addClicker(randomFruit1);
@@ -400,6 +387,7 @@ class Game extends Phaser.Scene {
             newFruitWord();
         });
 
+        //Random Fruits 0-8 are added to variables to be animated with tweens...
         var fruit0 = this.randomFruit0
         var fruit1 = this.randomFruit1
         var fruit2 = this.randomFruit2
@@ -410,7 +398,7 @@ class Game extends Phaser.Scene {
         var fruit7 = this.randomFruit7
         var fruit8 = this.randomFruit8
 
-
+        //Animating the fruits (cards)
         this.tweens.add({
 
             targets: [fruit0, fruit1, fruit2, fruit3, fruit4, fruit5, fruit6, fruit7, fruit8],
@@ -421,44 +409,48 @@ class Game extends Phaser.Scene {
     
         });
 
-
+        //A default style 
         var style = { font: "80px Calibri", fill: "#2c6797", align: "center" };
 
+        //Timer Style
         var timerStyle = {font: "20px Calibri", fill: "#000000", align: "center"};
 
+        //Adding the score text using the score variable and the default style...
         var scoreText = this.add.text(phaser.config.width / 2-265, phaser.config.height / 2+20, score, style); 
-        game.scoreText = scoreText; 
+        game.scoreText = scoreText; //Adding a reference to scoreText
 
         var oppScoreText = this.add.text(phaser.config.width / 2-265, phaser.config.height / 2+180, oppScore, style); 
         game.oppScoreText = oppScoreText; 
 
-
-
+        //Function for when the game has ended...
         function gameEnd(){
-            var finishStyle = {font: '50px calibri', fill: '#000000', }
-            var finishText = game.add.text(phaser.config.width / 2-200, phaser.config.height / 2, style)
+            var finishStyle = {font: '50px calibri', fill: '#000000', } 
+            var finishText = game.add.text(phaser.config.width / 2-200, phaser.config.height / 2, style) 
             
+            //If your score is higher than the opponent score, you win, else, you lose.
             if(score > oppScore){
                 finishText.setText('YOU WIN');
             }else{
                 finishText.setText('YOU LOSE');
             }
 
-            game.scene.pause();
+            game.scene.pause(); //Pause the scene
 
-            setTimeout(function(){   
+            setTimeout(function(){   //Set timeout then return to menu
                 game.scene.start('menu')
-                score = 0;
+                score = 0; //Set score back to 0
             },5000)
         }
 
         var timerText = this.add.text(phaser.config.width / 2-300, phaser.config.height / 2-95, timer, timerStyle);
         game.timerText = timerText;
 
-        timer = this.time.addEvent({ delay: 30000, callback: gameEnd})
+        //Add timer event with a delay of 30000...
+        //When timer ends, add gameEnd callback function
+        timer = this.time.addEvent({ delay: 30000, callback: gameEnd}) 
 
       
-        game.timer = timer;
+        game.timer = timer; //Reference to timer 
     }
 
     update(game){
@@ -468,8 +460,9 @@ class Game extends Phaser.Scene {
         game.scoreText.setText(score); //updates the text for the score
         game.oppScoreText.setText(oppScore); //updates the text for the score
 
-        
-        game.timerText.setText('Timer: ' + game.timer.getProgress().toString().substr(0, 4));
+        //Gets the progress of the timer...
+        //Adds progress to text
+        game.timerText.setText('Timer: ' + game.timer.getProgress().toString().substr(0, 4)); 
         
         }
     

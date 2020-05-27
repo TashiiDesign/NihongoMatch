@@ -1,11 +1,12 @@
 
-//variables
+//Defining Variables
 let game;
 let score = 0;
 let oppScore = 0;
 var timer;
 let player1;
-let player2;
+
+
 
 //Game config
 var config = {
@@ -41,3 +42,11 @@ phaser.CONFIG   = {
 
 //Audio config
 
+function bgmAudio(){
+	var bgm = new Audio('/client/assets/sounds/bgm.mp3');
+	bgm.volume = 0.4;
+	bgm.loop = true;
+	bgm.play();		
+}
+
+//bgmAudio();
