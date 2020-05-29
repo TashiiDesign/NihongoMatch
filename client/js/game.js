@@ -22,6 +22,8 @@ class Game extends Phaser.Scene {
         var logoGameScreen = this.load.image('logo-game-screen', '/client/assets/game-screen/logo-game-screen.png');
         var startBanner = this.load.image('start-banner', '/client/assets/banners/player-choosing-banner.png')
         var startText = this.load.image('start-text', '/client/assets/banners/start-text.png')
+        var youWin = this.load.image('you-win', '/client/assets/banners/you-win.png')
+        var youLose = this.load.image('you-lose', '/client/assets/banners/you-lose.png')
 
         //Preload Fruit Words
 
@@ -80,7 +82,6 @@ class Game extends Phaser.Scene {
                 var randomNumber = Math.floor(Math.random() * 9);
                 
                 return this.fruitWords[randomNumber]
-               // return this.animalWords[randomNumber]
                 return this.fruits[randomNumber]
             }
 
@@ -93,23 +94,11 @@ class Game extends Phaser.Scene {
         //shuffles the array
         //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 
-        function shuffle(arr) {
-            var currentIndex = arr.length, temporaryValue, randomIndex;
-          
-            // While there remain elements to shuffle...
-            while (0 !== currentIndex) {
-          
-              // Pick a remaining element...
-              randomIndex = Math.floor(Math.random() * currentIndex);
-              currentIndex -= 1;
-          
-              // And swap it with the current element.
-              temporaryValue = arr[currentIndex];
-              arr[currentIndex] = arr[randomIndex];
-              arr[randomIndex] = temporaryValue;
-            }
-          
-            return arr;
+        function shuffle(array) {
+            var random = array.map(Math.random);
+            array.sort(function(a, b) {
+              return random[array.indexOf(a)] - random[array.indexOf(b)];
+            });
           }
 
         //Declaring fruits array 
@@ -119,18 +108,7 @@ class Game extends Phaser.Scene {
 
 
         shuffle(fruits);
-        //shuffle(animals);
-       
-       
-        
-        //var randomAnimal = new RandomNumberChooser(animalWords);
-        
-        // var randomFruitWord = randomFruit.getRandomNumber();
-        // console.log(randomFruitWord)
 
-        // var randomAnimalWord = randomAnimal.getRandomNumber();
-        // console.log(randomAnimalWord)
-        
         game = this; 
           
         var newFruitWord = function(){ 
@@ -169,7 +147,7 @@ class Game extends Phaser.Scene {
 
             //Adds the Images for the random Fruits
             this.randomFruit0 = this.add.image(phaser.config.width / 2-43, phaser.config.height / 2-37, randomFruit0).setInteractive();
-            this.randomFruit1  = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2-37, randomFruit1).setInteractive();
+            this.randomFruit1 = this.add.image(phaser.config.width / 2+145, phaser.config.height / 2-37, randomFruit1).setInteractive();
             this.randomFruit2  = this.add.image(phaser.config.width / 2+335, phaser.config.height / 2-37, randomFruit2).setInteractive();
 
             this.randomFruit3 = this.add.image(phaser.config.width / 2-40, phaser.config.height / 2+93, randomFruit3).setInteractive();
@@ -187,9 +165,6 @@ class Game extends Phaser.Scene {
             oppScore++
             console.log('correct')
         });
-        Client.socket.on('wrong', function (){
-           console.log('wrong')
-        });
 
         //Function addClicker to check whether an image matches the word
         function addClicker(image){
@@ -200,7 +175,7 @@ class Game extends Phaser.Scene {
                     score++ //Add to the score
                     correctTone.play(); //Play the audio for 'correct' 
                 }else{
-                    Client.socket.emit('serverWrong');
+                    
                     errorTone.play();
                 }
                 console.log(score)
@@ -215,7 +190,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+                 
                     errorTone.play();
                 }
                 console.log(score)
@@ -227,7 +202,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+
                     errorTone.play();
                 }
                 console.log(score)
@@ -239,7 +214,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+                 
                     errorTone.play();
                 }
                 console.log(score)
@@ -251,7 +226,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+                 
                     errorTone.play();
                 }
                 console.log(score)
@@ -264,7 +239,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+                 
                     errorTone.play();
                 }
                 console.log(score)
@@ -277,7 +252,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+                 
                     errorTone.play();
                 }
                 console.log(score)
@@ -290,7 +265,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+                 
                     errorTone.play();
                 }
                 console.log(score)
@@ -303,7 +278,7 @@ class Game extends Phaser.Scene {
                     score++
                     correctTone.play();
                 }else{
-                    Client.socket.emit('serverWrong');
+                 
                     errorTone.play();
                 }
                 console.log(score)
@@ -424,14 +399,14 @@ class Game extends Phaser.Scene {
 
         //Function for when the game has ended...
         function gameEnd(){
-            var finishStyle = {font: '50px calibri', fill: '#000000', } 
-            var finishText = game.add.text(phaser.config.width / 2-200, phaser.config.height / 2, style) 
+
+            game.startBanner = game.add.image(phaser.config.width / 2, phaser.config.height / 2, "start-banner")
             
             //If your score is higher than the opponent score, you win, else, you lose.
             if(score > oppScore){
-                finishText.setText('YOU WIN');
+                game.youWin = game.add.image(phaser.config.width / 2, phaser.config.height / 2, "you-win")
             }else{
-                finishText.setText('YOU LOSE');
+                game.youLose = game.add.image(phaser.config.width / 2, phaser.config.height / 2, "you-lose")
             }
 
             game.scene.pause(); //Pause the scene
@@ -439,6 +414,7 @@ class Game extends Phaser.Scene {
             setTimeout(function(){   //Set timeout then return to menu
                 game.scene.start('menu')
                 score = 0; //Set score back to 0
+                Client.socket.emit('gameEnd');
             },5000)
         }
 
